@@ -42,7 +42,6 @@ export class BooksListMainComponent implements OnInit {
 
     // get current page of items
     this.pagedItems = this.booksList.items.slice(this.pager.startIndex, this.pager.endIndex + 1);
-    console.log(this.pagedItems);
 }
 
 }
