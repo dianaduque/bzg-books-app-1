@@ -1,6 +1,6 @@
 <section class="container content" >        
   <div class="row">
-    <div *ngFor="let book of booksList?.items" class="col-12 col-sm-12 col-md-6 col-lg-3">
+    <div *ngFor="let book of pagedItems" class="col-12 col-sm-12 col-md-6 col-lg-3">
       <div class="card">
           <div class="card-header">
               {{book.volumeInfo.title}}
@@ -18,4 +18,25 @@
       </div>                        
   </div>
   </div>
+<nav aria-label="Page navigation example">
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination justify-content-center">
+
+                <li [ngClass]="(pager.currentPage == 1)? 'page-item disabled': 'page-item'">
+                    <a (click)="setPage(1)" class="page-link">Firts</a>
+                </li>
+                <li [ngClass]="(pager.currentPage == 1)? 'page-item disabled': 'page-item'">
+                    <a (click)="setPage(pager.currentPage - 1)" class="page-link">Previous</a>
+                </li>
+                <li *ngFor="let page of pager.pages" [ngClass]="(pager.currentPage == page)? 'page-item active': 'page-item'">
+                    <a (click)="setPage(page)" class="page-link">{{page}}</a>
+                </li>
+                <li [ngClass]="(pager.currentPage == pager.totalPages)?	'page-item disabled': 'page-item'">
+                    <a (click)="setPage(pager.currentPage + 1)" class="page-link">Next</a>
+                </li>
+                <li [ngClass]="(pager.currentPage == pager.totalPages)?	'page-item disabled': 'page-item'">
+                    <a (click)="setPage(pager.totalPages)" class="page-link">Last</a>
+                </li>
+            </ul>
+</nav>
+
 </section>
