@@ -11,7 +11,8 @@ import { BookList } from "../../models/books";
 export class BookDetailComponent implements OnInit {
 
   book: any;
-  booksListRel: BookList;s
+  booksListRel: BookList;
+  
 
   constructor(private route: ActivatedRoute, private booksService: BookListService) { 
     this.book = {};
@@ -37,7 +38,6 @@ export class BookDetailComponent implements OnInit {
             (books:BookList) => {
               if(books){
                 this.booksListRel = books;
-                console.log("libros");
               }        
             }
           );
@@ -45,7 +45,6 @@ export class BookDetailComponent implements OnInit {
       )
     });
 
-   
 
   }
 

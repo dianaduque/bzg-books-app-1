@@ -10,16 +10,33 @@ import { User } from '../../auth/models/user/user';
 })
 export class CollectionService {
 
-  
+  user: firebase.User;
 
   favsRef: AngularFireList<any> = null;  
 
   constructor(private alertService: MessagesService, private authFire: AngularFireAuth,
-    private rdb: AngularFireDatabase) { }
+    private rdb: AngularFireDatabase) { 
+      authFire.authState.subscribe(
+        user => {
+          this.user = user;
+          this.favsRef = rdb.list('collections/' + this.user.uid);
+          console.log('dentro: '+this.favsRef);
+        }
+      )
+    }
 
-    newCollection(collection:Collection, user:User) : AngularFireList<any[]>{
-      //return this.favsRef = this.rdb.list('collections/' + user.uid + '/' + name);
-      
+  newCollection(collection:Collection) : AngularFireList<any[]>{
+
+
+      const promise = this.favsRef.push(collection);
+      promise.then(() => {
+        this.alertService.message({msg:"Collection creada", type:"success"});
+      });
+
       return null;
     }
+
+  getListCollections(): AngularFireList<any[]>{
+    return this.favsRef;
+  }
 }

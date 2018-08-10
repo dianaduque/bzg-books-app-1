@@ -25,5 +25,12 @@
           <i class="fa fa-heart"></i> Favorito</button>
       </div>
     </div>
+    <div class="row">
+      <div class="col-12" *ngFor="let collection of listCollections">
+          <button class="btn btn-primary" >
+              <i class="fa fa-heart"></i> {{collection}}</button>
+          
+      </div>
+     </div>
   </div>
 </div>
