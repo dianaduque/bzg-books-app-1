@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ICollection } from '../../models/collection';
+import {CollectionService} from '../../services/collection.service';
+import { User } from '../../../auth/models/user/user';
 
 @Component({
   selector: 'app-collection-list',
@@ -7,16 +9,18 @@ import { ICollection } from '../../models/collection';
   styleUrls: ['./collection-list.component.css']
 })
 export class CollectionListComponent implements OnInit {
+  @Input() user: User;
 
-  constructor() { 
+  constructor(private collectionService:CollectionService) { 
   }
 
   ngOnInit() {
   }
 
   newCollection(event : ICollection) {
+    console.log(this.user);
     if(event) {
-      console.log("aqui vamos");
+      this.collectionService.newCollection(event,this.user);
     }
   }
 
