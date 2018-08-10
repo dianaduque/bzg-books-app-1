@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ICollection } from '../../models/collection';
 
 @Component({
   selector: 'app-collection-list',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CollectionListComponent implements OnInit {
 
-  constructor() { }
+  constructor() { 
+  }
 
   ngOnInit() {
+  }
+
+  newCollection(event : ICollection) {
+    if(event) {
+      console.log("aqui vamos");
+    }
   }
 
 }

@@ -45,7 +45,7 @@ export class AuthService {
   }
 
   logout() {
-    localStorage.removeItem('bzgBooksAppToken');
+    localStorage.removeItem('bzgBooksApp');
     this.authFire.auth.signOut()
     .then(
       res => {
