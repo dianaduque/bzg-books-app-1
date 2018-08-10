@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { BookListService } from "../../services/list/book-list.service";
+import { BookList } from "../../models/books";
 
 @Component({
   selector: 'app-book-detail',
@@ -10,9 +11,11 @@ import { BookListService } from "../../services/list/book-list.service";
 export class BookDetailComponent implements OnInit {
 
   book: any;
+  booksListRel: BookList;s
 
   constructor(private route: ActivatedRoute, private booksService: BookListService) { 
     this.book = {};
+    
   }
 
   ngOnInit() {
@@ -26,9 +29,23 @@ export class BookDetailComponent implements OnInit {
       .subscribe(
         (book: any) => {
           this.book = book;
+
+          this.booksService.searchBooks(this.book.volumeInfo.title,1,3);
+
+          this.booksService.bookList
+          .subscribe(
+            (books:BookList) => {
+              if(books){
+                this.booksListRel = books;
+                console.log("libros");
+              }        
+            }
+          );
         }
       )
     });
+
+   
 
   }
 
