@@ -5,7 +5,7 @@ import {CollectionService} from '../../services/collection.service';
 import { User } from '../../../auth/models/user/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, count } from 'rxjs/operators';
 
 @Component({
   selector: 'app-collection-list',
@@ -14,17 +14,13 @@ import { map } from 'rxjs/operators';
 })
 export class CollectionListComponent implements OnInit {
   listCollections: Observable<any[]>;
-  bookCollections: Observable<any[]>;
   @Input()  status: string;
 
   constructor(private route: ActivatedRoute, private collectionService:CollectionService,  private authFire: AngularFireAuth) { 
     this.listCollections = null;
-    this.bookCollections = null;
-    this.status = "collectionView";
   }
 
   ngOnInit() {
-    this.status = this.route.snapshot.data['collectionView'];
     this.authFire.authState
     .subscribe(
       user => {          
@@ -37,18 +33,14 @@ export class CollectionListComponent implements OnInit {
     );   
   }
 
+  removeCollection(collectionKey: string){
+    this.collectionService.removeCollection(collectionKey);
+  }
+
   newCollection(event : ICollection) {
     if(event) {
       this.collectionService.newCollection(event);
     }
-  }
-
-  click(key: string){
-    console.log(status);
-    if(status == "booksView")
-      this.status = "collectionView";
-    else
-      this.status = "booksView";
   }
 
 }

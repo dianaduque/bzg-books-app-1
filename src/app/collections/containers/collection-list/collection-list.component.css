@@ -9,19 +9,9 @@
 .list-group-title{
     background-color: var(--main-style-color);
     padding: 20px;
-    color: white;
+    color: var(--main-title-color);
 }
 
-div.collectionView.hiddenView{
-    display:none;
-    background-color: red;
-}
-
-div.collectionView{
-    background-color: green;
-}
-
-div.booksView.hiddenView{
-    display:none;
-    background-color: red;
+.mybtn{
+    margin: 5px;
 }

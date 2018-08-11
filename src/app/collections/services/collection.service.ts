@@ -13,6 +13,7 @@ export class CollectionService {
   user: firebase.User;
 
   favsRef: AngularFireList<any> = null;  
+  favsRef1: AngularFireList<any> = null;
 
   constructor(private alertService: MessagesService, private authFire: AngularFireAuth,
     private rdb: AngularFireDatabase) { 
@@ -38,7 +39,16 @@ export class CollectionService {
   }
 
   getBooksInCollection(key:string): AngularFireList<any[]>{
-    return this.rdb.list('collections/' + this.user.uid + "/" + key + "/books");
+    this.favsRef1 = this.rdb.list<any[]>('collections/' + this.user.uid + "/" + key + "/books");
+    return this.favsRef1;
+  }
+
+  removeCollection(key: string){
+    this.rdb.list<any[]>('collections/' + this.user.uid + "/" + key).remove()
+  }
+
+  removeBookFromCollection(key:string, bookId:string){
+    this.rdb.list<any[]>('collections/' + this.user.uid + "/" + key + "/books/" + bookId).remove();
   }
 
   addBook(key:string, book: any){
