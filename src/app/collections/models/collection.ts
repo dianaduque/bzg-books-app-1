@@ -5,7 +5,7 @@ export interface ICollection {
 
 export class Collection implements ICollection{
     name: string;
-    books: any[]
+    books: any[] = [];
 
     constructor(){}
 }

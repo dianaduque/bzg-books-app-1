@@ -5,16 +5,19 @@ import { BooksListMainComponent } from './containers/books-list-main/';
 import { BookDetailComponent } from './containers/book-detail/';
 import { BookInfoComponent } from './components/book-info/book-info.component';
 import { routes } from "./routes.books-main";
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const COMPONENTS = [
   BooksListMainComponent,
   BookDetailComponent,
-  BookInfoComponent
+  BookInfoComponent,
 ];
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ],
   declarations: COMPONENTS

@@ -25,14 +25,12 @@
           <i class="fa fa-heart"></i> Favorito</button>
       </div>
     </div>
+    <br>
     <div class="row">
-        <select class="col-12">
-            <option ng-repeat="collection in listCollections | async">{{collection}}</option>
-            </select>
-      <div class="col-12" *ngFor="let collection of listCollections | async">
-          <button class="btn btn-primary" >
-              <i class="fa fa-heart"></i> {{collection?.name}}</button>     
-      </div>
+        <select class="col-12"  (change)="addToCollection($event)">
+            <option>Adicionar a la coleccion...</option>
+            <option *ngFor="let collection of listCollections | async" [value]='collection.key'>{{collection.name}}</option>
+        </select>
      </div>
   </div>
 </div>

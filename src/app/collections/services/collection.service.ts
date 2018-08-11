@@ -20,23 +20,29 @@ export class CollectionService {
         user => {
           this.user = user;
           this.favsRef = rdb.list('collections/' + this.user.uid);
-          console.log('dentro: '+this.favsRef);
         }
       )
     }
 
-  newCollection(collection:Collection) : AngularFireList<any[]>{
+  newCollection(collection:Collection){
 
 
       const promise = this.favsRef.push(collection);
       promise.then(() => {
         this.alertService.message({msg:"Collection creada", type:"success"});
       });
-
-      return null;
     }
 
   getListCollections(): AngularFireList<any[]>{
     return this.favsRef;
+  }
+
+  addBook(key:string, book: any){
+    let favsRef1 = this.rdb.list('collections/' + this.user.uid + "/" + key + "/books");
+    const promise = favsRef1.push(book);
+    promise.then(() => {
+      this.alertService.message({msg:"libro adicionado a la coleccion", type:"success"});
+    });
+
   }
 }
