@@ -1,0 +1,27 @@
+#collection_addition{
+    margin: 30px;
+}
+
+.collection-item{
+    border: 1px solid;
+}
+
+.list-group-title{
+    background-color: var(--main-style-color);
+    padding: 20px;
+    color: white;
+}
+
+div.collectionView.hiddenView{
+    display:none;
+    background-color: red;
+}
+
+div.collectionView{
+    background-color: green;
+}
+
+div.booksView.hiddenView{
+    display:none;
+    background-color: red;
+}

@@ -1,2 +1,38 @@
-<app-collection-form (submitted)="newCollection($event)"></app-collection-form>
-
+<div>
+    <div class="collectionView" [ngClass]="(status == 'booksView')? 'hiddenView': ''">
+        <div class id="collection_addition">
+            <app-collection-form (submitted)="newCollection($event)"></app-collection-form>
+        </div>
+        <div class="list-group" id="collection_list">  
+                <div class="list-group-title">Mis colecciones</div> 
+            <div class="list-group-item collection-item" *ngFor="let collection of listCollections | async">
+            <div class="card-header">{{collection.name}}</div>
+            <div class="card-body">{{collection.description}}</div>
+            <div class="col-xs-4">
+                    <button (click)="click(collection.key)" type="submit" class="btn btn-primary">Entrar</button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="booksView"[ngClass]="(status == 'collectionView')? 'hiddenView': ''">
+        <p>Libros de la coleccion</p>
+        <div class="row">
+            <div *ngFor="let bookR of booksListRel?.items" class="col-12 col-sm-12 col-md-6 col-lg-3">
+            <div class="card">
+                <div class="card-header">
+                    {{bookR.volumeInfo.title}}
+                </div>
+                <img class="card-img-top" [src]="bookR.volumeInfo.imageLinks?.thumbnail">
+                <div class="card-body">
+                    <p class="card-text">
+                        {{bookR.volumeInfo.publisher}}
+                    </p>
+                    <p class="card-text">
+                        {{bookR.volumeInfo.publishedDate}}
+                    </p>
+                    <a class="col-12 col-md-auto col-lg-auto btn btn-primary" [routerLink]="['../detail/', bookR.id]">Ver Detalle</a>
+                </div>
+            </div>                        
+        </div>
+    </div>
+</div>

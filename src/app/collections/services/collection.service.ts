@@ -37,6 +37,10 @@ export class CollectionService {
     return this.favsRef;
   }
 
+  getBooksInCollection(key:string): AngularFireList<any[]>{
+    return this.rdb.list('collections/' + this.user.uid + "/" + key + "/books");
+  }
+
   addBook(key:string, book: any){
     let favsRef1 = this.rdb.list('collections/' + this.user.uid + "/" + key + "/books");
     const promise = favsRef1.push(book);
