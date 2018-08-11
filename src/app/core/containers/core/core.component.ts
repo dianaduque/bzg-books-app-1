@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Store, select } from '@ngrx/store';
+import * as fromRoot from "../../../reducers";
+import { Observable } from "rxjs";
 
 @Component({
   selector: 'app-core',
@@ -7,18 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CoreComponent implements OnInit {
 
-  stateAside:string;
+  stateAside$: Observable<string> = this.store.pipe(select(fromRoot.getShowSideNav));
 
-  constructor() { }
+  constructor(private store: Store<fromRoot.State>) { }
 
   ngOnInit() {
-  }
-
-  sendState(event){    
-    if(event){
-      this.stateAside = event;
-    }
-    
   }
 
 }

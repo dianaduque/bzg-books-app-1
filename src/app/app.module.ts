@@ -11,6 +11,9 @@ import { AuthModule } from "./auth/auth.module";
 import { AngularFireModule } from "angularfire2";
 import { AngularFireAuthModule } from "angularfire2/auth";
 import { AngularFireDatabaseModule } from "angularfire2/database";
+import { StoreModule } from "@ngrx/store";
+import { StoreDevtoolsModule } from "@ngrx/store-devtools";
+import { reducers, metaReducer } from "./reducers";
 
 import { AppComponent } from './app.component';
 import { routes  } from "./routes";
@@ -28,6 +31,14 @@ import { environment } from "../environments/environment";
     RouterModule.forRoot(routes),
     HttpModule,
     HttpClientModule,
+    StoreModule.forRoot(reducers, {metaReducers: metaReducer}),
+    StoreDevtoolsModule.instrument(
+      {
+        name: 'Biz books app',
+        logOnly: environment.production,
+        maxAge: 30
+      }
+    ),
     /**
     HttpClientInMemoryWebApiModule.forRoot(
       BooksDBService, {dataEncapsulation: false, delay: 3000}

@@ -1,5 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BookListService } from "../../../books-main/services/list/book-list.service";
+import { Store, } from "@ngrx/store";
+import * as fromRoot from "../../../reducers";
+import * as layout from "../../actions/layout";
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -8,11 +11,9 @@ import { BookListService } from "../../../books-main/services/list/book-list.ser
 })
 export class TopNavBarComponent implements OnInit {
 
-  @Output() openAside = new EventEmitter<string>();
-
   state:string;
 
-  constructor(private bookService: BookListService) { 
+  constructor(private bookService: BookListService, private store: Store<fromRoot.State>) { 
     this.state = 'open';
   }
 
@@ -20,9 +21,16 @@ export class TopNavBarComponent implements OnInit {
   }
 
   open() {
-    this.state = (this.state === 'close') ? 'open' : 'close';
-    console.log(this.state);
-    this.openAside.emit(this.state);
+    if(this.state === 'close')
+    {
+      this.state = 'open';
+      this.store.dispatch(new layout.OpenSideNav());
+    }
+    else
+    {
+      this.state = 'close';
+      this.store.dispatch(new layout.CloseSideNav());
+    }
   }
 
   searchBooks(text:string) {
