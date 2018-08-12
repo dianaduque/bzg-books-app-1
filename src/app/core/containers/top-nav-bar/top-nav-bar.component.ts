@@ -4,6 +4,8 @@ import { trigger, state, style, transition, animate, animation } from "@angular/
 import { Store } from "@ngrx/store";
 import * as fromRoot from "../../../reducers";
 import * as layout from "../../actions/layout";
+import { User } from "firebase/app";
+import { AngularFireAuth } from "angularfire2/auth";  
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -16,10 +18,10 @@ import * as layout from "../../actions/layout";
         display: 'none'
       })),
       state('opened', style({
-        height: '80px',
+        height: '140px',
       })),
-      transition('closed => opened', animate('120ms')),
-      transition('opened => closed', animate('120ms'))
+      transition('closed => opened', animate('90ms')),
+      transition('opened => closed', animate('90ms'))
     ])
   ]
 })
@@ -27,13 +29,17 @@ export class TopNavBarComponent implements OnInit {
 
   state:string;
   popupState:string;
+  user: User;
 
-  constructor(private bookService: BookListService, private store: Store<fromRoot.State>) { 
+  constructor(private bookService: BookListService, private store: Store<fromRoot.State>, 
+      private authFire: AngularFireAuth) { 
+      
     this.state = 'open';
     this.popupState = 'closed';
   }
 
   ngOnInit() {
+    this.authFire.authState.subscribe(user => {this.user = user; console.log(user)})
   }
 
   open() {
