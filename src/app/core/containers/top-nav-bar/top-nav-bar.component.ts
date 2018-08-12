@@ -1,20 +1,36 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { BookListService } from "../../../books-main/services/list/book-list.service";
-import { Store, } from "@ngrx/store";
+import { trigger, state, style, transition, animate, animation } from "@angular/animations";
+import { Store } from "@ngrx/store";
 import * as fromRoot from "../../../reducers";
 import * as layout from "../../actions/layout";
 
 @Component({
   selector: 'app-top-nav-bar',
   templateUrl: './top-nav-bar.component.html',
-  styleUrls: ['./top-nav-bar.component.css']
+  styleUrls: ['./top-nav-bar.component.css'],
+  animations: [
+    trigger('popupAnimation', [
+      state('closed', style({
+        height: '0px',
+        display: 'none'
+      })),
+      state('opened', style({
+        height: '80px',
+      })),
+      transition('closed => opened', animate('120ms')),
+      transition('opened => closed', animate('120ms'))
+    ])
+  ]
 })
 export class TopNavBarComponent implements OnInit {
 
   state:string;
+  popupState:string;
 
   constructor(private bookService: BookListService, private store: Store<fromRoot.State>) { 
     this.state = 'open';
+    this.popupState = 'closed';
   }
 
   ngOnInit() {
@@ -37,4 +53,10 @@ export class TopNavBarComponent implements OnInit {
     this.bookService.searchBooks(text, 0, 20);
   }
 
+  onNavImageClick(){
+    if(this.popupState == 'closed')
+      this.popupState = 'opened'
+    else
+      this.popupState = 'closed'
+  }
 }

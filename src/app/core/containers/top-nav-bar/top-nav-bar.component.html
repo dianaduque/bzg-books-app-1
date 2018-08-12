@@ -14,11 +14,18 @@
         </div>
         <div class="col-6">
           <a class="link-profile">
-            <i class="fa fa-user-circle"></i>
+            <i class="fa fa-user-circle" (click)="onNavImageClick()">
+                <div class="user-window" [@popupAnimation]="popupState" [ngClass]="((popupState == 'closed') ? 'user-window-hidden': '')">
+                    <i class="fa fa-user-circle user-window-image"></i>
+                    <div class="user-window-info">
+                        <div id="user-window-name">usuario</div>
+                        <div id="user-window-joined">joined</div>
+                   </div>
+                </div>
+            </i>          
           </a>
         </div>
       </div>
-
     </div>
   </div>
 </header>
