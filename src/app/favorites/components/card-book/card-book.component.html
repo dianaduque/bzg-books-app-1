@@ -10,6 +10,7 @@
     <p class="card-text">
       {{book.volumeInfo.publishedDate}}
     </p>
-    <a class="col-12 col-md-auto col-lg-auto btn btn-primary" [routerLink]="['../../books/detail', book.id]">Ver Detalle</a>
+    <a class="col-12 col-md-auto col-lg-auto btn btn-primary mybtn" [routerLink]="['../../books/detail', book.id]">Ver Detalle</a>    
+    <div class="col-12 col-md-auto col-lg-auto btn btn-primary mybtn" (click)="removeBook(book.key)">Eliminar</div>
   </div>
 </div>
