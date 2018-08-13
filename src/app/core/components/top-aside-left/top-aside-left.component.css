@@ -6,6 +6,13 @@
 
 .user-info {
     padding: 5px 10px;
+    width: 300px;
+}
+.user-info > h4{
+    max-width:300px; 
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 100%   
 }
 
 :host-context(.aside-close) .user-info {
