@@ -6,6 +6,7 @@ import * as fromRoot from "../../../reducers";
 import * as layout from "../../actions/layout";
 import { User } from "firebase/app";
 import { AngularFireAuth } from "angularfire2/auth";  
+import { FavoritesService } from '../../../favorites/services/favorites.service';
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -18,7 +19,7 @@ import { AngularFireAuth } from "angularfire2/auth";
         display: 'none'
       })),
       state('opened', style({
-        height: '140px',
+        height: '200px',
       })),
       transition('closed => opened', animate('90ms')),
       transition('opened => closed', animate('90ms'))
@@ -30,9 +31,10 @@ export class TopNavBarComponent implements OnInit {
   state:string;
   popupState:string;
   user: User;
+  count: number;
 
   constructor(private bookService: BookListService, private store: Store<fromRoot.State>, 
-      private authFire: AngularFireAuth) { 
+      private authFire: AngularFireAuth, private favService: FavoritesService) { 
       
     this.state = 'open';
     this.popupState = 'closed';
@@ -40,6 +42,17 @@ export class TopNavBarComponent implements OnInit {
 
   ngOnInit() {
     this.authFire.authState.subscribe(user => {this.user = user; console.log(user)})
+
+    this.authFire.authState.subscribe(
+      user => {          
+        this.favService.listFavorites(user).valueChanges()
+          .subscribe(
+            list => {
+              this.count = list.length;
+            }
+          )
+        }
+    );
   }
 
   open() {

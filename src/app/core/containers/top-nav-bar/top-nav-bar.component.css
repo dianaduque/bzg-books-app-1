@@ -87,12 +87,23 @@ header.top-header .right-header a.link-profile {
 }
 
 .user-window #user-window-top{
-    height:70%;
+    height:60%;
 }
 
 .user-window #user-window-bottom{
     position: relative;
     border-top: 0.1px solid;
     background-color: var(--header-back-color);
-    height: 30%;
+    height: 40%;
+}
+
+.user-window #user-window-bottom > a{
+    position: absolute;
+    right: 70px;
+}
+
+.user-window #user-window-bottom #favorites-text{
+    top: 36px;
+    right: 45px;
+    font-size: 0.6em;
 }
