@@ -97,12 +97,25 @@ header.top-header .right-header a.link-profile {
     height: 40%;
 }
 
-.user-window #user-window-bottom > a{
+.user-window #user-window-bottom #books-count{
+    position: absolute;
+    left: 70px;
+}
+
+.user-window #user-window-bottom #books-text{
+    position: absolute;
+    top: 36px;
+    left: 55px;
+    font-size: 0.6em;
+}
+
+.user-window #user-window-bottom #favorites-count{
     position: absolute;
     right: 70px;
 }
 
 .user-window #user-window-bottom #favorites-text{
+    position: absolute;
     top: 36px;
     right: 45px;
     font-size: 0.6em;

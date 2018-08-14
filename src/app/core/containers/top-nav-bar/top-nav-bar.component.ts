@@ -7,6 +7,7 @@ import * as layout from "../../actions/layout";
 import { User } from "firebase/app";
 import { AngularFireAuth } from "angularfire2/auth";  
 import { FavoritesService } from '../../../favorites/services/favorites.service';
+import { CollectionService } from '../../../collections/services/collection.service';
 
 @Component({
   selector: 'app-top-nav-bar',
@@ -32,9 +33,11 @@ export class TopNavBarComponent implements OnInit {
   popupState:string;
   user: User;
   count: number;
+  booksCount: number;
 
   constructor(private bookService: BookListService, private store: Store<fromRoot.State>, 
-      private authFire: AngularFireAuth, private favService: FavoritesService) { 
+      private authFire: AngularFireAuth, private favService: FavoritesService,
+      private collectionService: CollectionService) { 
       
     this.state = 'open';
     this.popupState = 'closed';
@@ -53,6 +56,27 @@ export class TopNavBarComponent implements OnInit {
           )
         }
     );
+    this.authFire.authState
+    .subscribe(
+      user => {          
+        let listCollections =  this.collectionService.getListCollections().valueChanges()
+        .subscribe(
+          list => {
+            let i = 0;
+            let values = list.values();
+            do
+            {
+              var col = values.next();
+              if(!col.done){
+                let books = col.value["books"];
+                for(let book in books)
+                  console.log(++i);
+              }
+            }while(!col.done)
+            this.booksCount = i;
+          }
+        )
+      })
   }
 
   open() {
