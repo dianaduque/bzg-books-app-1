@@ -17,8 +17,11 @@ export class MenuAsideLeftComponent implements OnInit {
   }
 
   logout() {
-    this.store.dispatch(new Auth.Logout());
-    this.authService.logout();
+    if(confirm("¿Desea salir?"))
+    {
+      this.store.dispatch(new Auth.Logout());
+      this.authService.logout();
+    }
   }
 
 }
