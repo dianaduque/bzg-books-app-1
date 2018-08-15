@@ -70,7 +70,7 @@ export class TopNavBarComponent implements OnInit {
               if(!col.done){
                 let books = col.value["books"];
                 for(let book in books)
-                  console.log(++i);
+                  ++i;
               }
             }while(!col.done)
             this.booksCount = i;

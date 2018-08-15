@@ -34,7 +34,6 @@ export class BookInfoComponent implements OnInit {
           map(changes => 
             changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
           ));
-        console.log(this.listCollections);
       }
     );   
   }
@@ -44,8 +43,26 @@ export class BookInfoComponent implements OnInit {
   }
 
   addToCollection(event:any){
-    console.log(event.target.value);
     this.collectionService.addBook(event.target.value,this.book);
+  }
+
+  getStarsIndicator(averageRating: number): Int16Array {
+    let starsIndicator = new Int16Array(5);
+    let qoutient = Math.trunc(averageRating) ;
+    let remain = averageRating - Math.trunc(averageRating);
+    for(let i = 0; i < 5; i++)
+    {
+      if(!isNaN(qoutient) && i < qoutient)
+        starsIndicator[i] = 0;
+      else if(!isNaN(remain) && remain > 0){
+        starsIndicator[i] = 1;
+        remain = 0;
+      }
+      else
+        starsIndicator[i] = 2;
+    }
+
+    return starsIndicator;
   }
 
 }

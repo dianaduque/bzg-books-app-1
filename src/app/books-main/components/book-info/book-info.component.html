@@ -17,8 +17,13 @@
       <div class="col-12">
         <img [src]="book.volumeInfo?.imageLinks.large || book.volumeInfo?.imageLinks.thumbnail" class="book-image">
       </div>
-    </div>
+    </div>    
     <br>
+    <div class="row" *ngFor="let starIndicator of getStarsIndicator(book.volumeInfo.averageRating)">
+          <i class="star" *ngIf="starIndicator == 0" class="fa fa-star" style="font-size:24px;color:red"></i>
+          <i class="star" *ngIf="starIndicator == 1" class="fa fa-star-half-o" style="font-size:24px;color:red"></i>
+          <i class="star" *ngIf="starIndicator == 2" class="fa fa-star-o" style="font-size:24px"></i>
+    </div>
     <div class="row">
       <div class="col-12">
         <button class="btn btn-primary" (click)="addFavorite()">

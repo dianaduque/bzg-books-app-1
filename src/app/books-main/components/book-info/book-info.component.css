@@ -7,3 +7,8 @@ h1 {
 .book-image {
     width: 300px;
 }
+
+.star{
+    position: absolute;
+    display: inline-block;
+}

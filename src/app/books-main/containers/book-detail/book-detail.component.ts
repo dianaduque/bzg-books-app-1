@@ -32,6 +32,7 @@ export class BookDetailComponent implements OnInit {
           this.book = book;
 
           this.booksService.searchBooks(this.book.volumeInfo.title,1,3);
+          console.log(this.book.volumeInfo.averageRating);
 
           this.booksService.bookList
           .subscribe(
@@ -44,8 +45,6 @@ export class BookDetailComponent implements OnInit {
         }
       )
     });
-
-
   }
 
   addFavorite(){
