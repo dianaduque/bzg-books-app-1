@@ -4,6 +4,7 @@ import {CollectionService} from '../../services/collection.service';
 import { Observable } from '../../../../../node_modules/rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { map } from 'rxjs/operators';
+import { BookListService } from "../../../books-main/services/list/book-list.service";
 import { AngularFireList } from '../../../../../node_modules/angularfire2/database';
 
 @Component({
@@ -15,7 +16,8 @@ export class CollectionBooksComponent implements OnInit {
   books: Observable<any[]>;
   id: string;
 
-  constructor(private route: ActivatedRoute, private collectionService:CollectionService, private authFire: AngularFireAuth) { 
+  constructor(private route: ActivatedRoute, private collectionService:CollectionService, 
+    private authFire: AngularFireAuth, private booksService: BookListService) { 
     this.books = null;
   }
 
@@ -35,7 +37,8 @@ export class CollectionBooksComponent implements OnInit {
     ); 
   };
 
-  removeBook(key: string){
-    this.collectionService.removeBookFromCollection(this.id, key);
+  removeBook(title: string, key: string){
+    if(confirm("¿Desea remover el libro '" + title + "' de la colección?"))
+      this.collectionService.removeBookFromCollection(this.id, key);
   };
 }

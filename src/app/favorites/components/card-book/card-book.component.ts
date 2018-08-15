@@ -16,6 +16,7 @@ export class CardBookComponent implements OnInit {
   }
 
   removeBook(key: string){    
-    this.favService.removeFavorites(this.user, key);
+    if(confirm("¿Desea remover el libro '" + this.book.volumeInfo.title + "' de los favoritos?"))
+      this.favService.removeFavorites(this.user, key);
   };
 }

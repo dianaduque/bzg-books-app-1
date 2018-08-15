@@ -33,8 +33,9 @@ export class CollectionListComponent implements OnInit {
     );   
   }
 
-  removeCollection(collectionKey: string){
-    this.collectionService.removeCollection(collectionKey);
+  removeCollection(collectionName: string, collectionKey: string){
+    if(confirm("¿Desea remover la colección '" + collectionName + "' y sus libros?"))
+      this.collectionService.removeCollection(collectionKey);
   }
 
   newCollection(event : ICollection) {

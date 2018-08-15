@@ -15,7 +15,7 @@
                     {{bookR.volumeInfo.publishedDate}}
                 </p>
                 <a class="col-12 col-md-auto col-lg-auto btn btn-primary mybtn" [routerLink]="['../../../books/detail/', bookR.id]">Ver Detalle</a>
-                <div class="col-12 col-md-auto col-lg-auto btn btn-primary mybtn" (click)="removeBook(bookR.key)">Eliminar</div>
+                <div class="col-12 col-md-auto col-lg-auto btn btn-primary mybtn" (click)="removeBook(bookR.volumeInfo.title, bookR.key)">Eliminar</div>
             </div>
         </div>                        
     </div>
