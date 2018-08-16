@@ -4,4 +4,6 @@ export interface User {
     username: string;
     email: string;
     urlImage?: string;
+    photoURL?: string;
+    displayName?: string;
 }
