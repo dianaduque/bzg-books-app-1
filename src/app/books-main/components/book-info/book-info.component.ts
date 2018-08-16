@@ -65,4 +65,10 @@ export class BookInfoComponent implements OnInit {
     return starsIndicator;
   }
 
+  getNumberOfVotes(numberOfVotes: number): number{
+    if(isNaN(numberOfVotes))
+      return 0;
+    
+    return numberOfVotes;
+  }
 }

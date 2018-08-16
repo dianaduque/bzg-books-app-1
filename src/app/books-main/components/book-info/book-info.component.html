@@ -19,11 +19,16 @@
       </div>
     </div>    
     <br>
-    <div class="row" *ngFor="let starIndicator of getStarsIndicator(book.volumeInfo.averageRating)">
-          <i class="star" *ngIf="starIndicator == 0" class="fa fa-star" style="font-size:24px;color:red"></i>
-          <i class="star" *ngIf="starIndicator == 1" class="fa fa-star-half-o" style="font-size:24px;color:red"></i>
-          <i class="star" *ngIf="starIndicator == 2" class="fa fa-star-o" style="font-size:24px"></i>
+    <div class="star" *ngFor="let starIndicator of getStarsIndicator(book.volumeInfo.averageRating)">
+          <i class="fa fa-star" *ngIf="starIndicator == 0"></i>
+          <i class="fa fa-star-half-o" *ngIf="starIndicator == 1" ></i>
+          <i class="fa fa-star-o" *ngIf="starIndicator == 2"></i>
     </div>
+    <div class="row numberOfVotes">
+        <div class="col-12">
+            <i>({{getNumberOfVotes(book.volumeInfo.ratingsCount)}} votaciones)</i>
+        </div>
+      </div>
     <div class="row">
       <div class="col-12">
         <button class="btn btn-primary" (click)="addFavorite()">

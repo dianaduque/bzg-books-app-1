@@ -9,6 +9,13 @@ h1 {
 }
 
 .star{
-    position: absolute;
+    display: inline-block;
+    font-size:24px;
+    color: red;
+}
+
+.numberOfVotes{
+    position: relative;
+    left: 10px;
     display: inline-block;
 }
