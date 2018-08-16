@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+
+button {
+    width:100%;
+    margin-bottom:5px;
+}
+
+
+
+#google {
+    border: 1px solid #95989A;
+    background: #fff  url('/assets/images/google.svg') no-repeat 25px;
+    background-size: 25px;
+}
+
+#email {
+    border: 1px solid rgb(150, 149, 154);
+    background: rgb(124, 108, 190);
+    background-size: 25px;
+}
+
+
+#test{
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

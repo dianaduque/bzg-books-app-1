@@ -1,6 +1,6 @@
 import { Routes } from "@angular/router";
-import { BooksListMainComponent } from "./containers/books-list-main/";
-import { BookDetailComponent } from "./containers/book-detail/";
+import { BooksListMainComponent } from "./containers/books-list-main";
+import { BookDetailComponent } from "./containers/book-detail";
 
 export const routes: Routes = [
     {

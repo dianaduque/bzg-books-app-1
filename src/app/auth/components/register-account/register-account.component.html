@@ -1,0 +1,20 @@
+<div class="form-container">
+    
+  
+    <h2>Join now</h2>
+  
+    <span class="error" *ngIf="error" [@fallIn]='state'>{{ error }}</span>
+  
+    <form (ngSubmit)="onSubmit()" #formData='ngForm'>
+  
+      <div class="form-group has-feedback">
+        <input type="email" class="form-control" placeholder="Email address.." [(ngModel)]="login.email" name="email" required autofocus>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Password" [(ngModel)]="login.password" name="password" required
+          autofocus>
+      </div>
+      <button id="create-account" type="submit" class="btn btn-lg btn-success btn-block">Create my account</button>
+    </form>
+    <a routerLink="/login" id="goback">atras</a>
+  </div>

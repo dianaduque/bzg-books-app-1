@@ -8,7 +8,8 @@ import { routes } from "./routes.auth";
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import {reducers} from "./reducers";
 import {AlertsModule} from "../alerts/alerts.module";
-import { RegisterFormComponent } from './components/register-form/register-form.component';
+import { EmailComponent } from './components/login-email/login-email.component';
+import { SignupComponent } from './components/register-account/register-account.component';
 
 @NgModule({
   imports: [
@@ -19,6 +20,6 @@ import { RegisterFormComponent } from './components/register-form/register-form.
     StoreModule.forFeature('auth',reducers),
     AlertsModule
   ],
-  declarations: [LoginComponent, LoginFormComponent, RegisterFormComponent]
+  declarations: [LoginComponent, LoginFormComponent, EmailComponent, SignupComponent]
 })
 export class AuthModule { }

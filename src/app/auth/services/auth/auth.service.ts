@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from "@angular/router";
 import { ILogin } from "../../models/user/auth";
 import { AngularFireAuth } from "angularfire2/auth";
-import * as firebase from "firebase/app";
+import * as firebase from "firebase";
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -37,11 +37,21 @@ export class AuthService {
    });
  }
  
-  signWithGoogle() {
-    return this.authFire.auth.signInWithPopup(
-      new firebase.auth.GoogleAuthProvider()
-    );
-  }
+ signWithGoogle() {
+  return this.authFire.auth.signInWithPopup(
+    new firebase.auth.GoogleAuthProvider()
+  )
+}
+
+signInWithFacebook() {
+  return this.authFire.auth.signInWithPopup(
+    new firebase.auth.FacebookAuthProvider()
+  )
+}
+
+createWithEmail(auth: ILogin) {
+  return this.authFire.auth.createUserWithEmailAndPassword(auth.email, auth.password);
+}
 
   isLoggedIn():boolean {
     if(this.userDetails == null){

@@ -4,7 +4,7 @@ import { trigger, state, style, transition, animate, animation } from "@angular/
 import { Store } from "@ngrx/store";
 import * as fromRoot from "../../../reducers";
 import * as layout from "../../actions/layout";
-import { User } from "firebase/app";
+import { User } from "firebase";
 import { AngularFireAuth } from "angularfire2/auth";  
 import { FavoritesService } from '../../../favorites/services/favorites.service';
 import { CollectionService } from '../../../collections/services/collection.service';

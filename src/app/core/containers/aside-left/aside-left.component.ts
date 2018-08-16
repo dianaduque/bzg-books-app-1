@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { trigger, state, style, transition, animate, animation } from "@angular/animations";
-import { User } from "firebase/app";
+import { User } from "firebase";
 import { AngularFireAuth } from "angularfire2/auth";
 
 

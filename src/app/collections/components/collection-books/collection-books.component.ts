@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import {CollectionService} from '../../services/collection.service';
-import { Observable } from '../../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { map } from 'rxjs/operators';
 import { BookListService } from "../../../books-main/services/list/book-list.service";
-import { AngularFireList } from '../../../../../node_modules/angularfire2/database';
+import { AngularFireList } from 'angularfire2/database';
 
 @Component({
   selector: 'app-collection-books',

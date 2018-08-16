@@ -1,0 +1,25 @@
+<div class="form-container">
+    
+    <h2>Email Login</h2>
+  
+    <span class="alert alert-danger" *ngIf="error" [@fallIn]='state'>{{ error}}</span>
+  
+    <form #formData="ngForm" (ngSubmit)="onSubmit()">
+      <div class="form-group has-feedback">
+        <input type="email" class="form-control" placeholder="Email address.." [(ngModel)]="login.email" name="email" required autofocus>
+      </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" placeholder="Password" [(ngModel)]="login.password" name="password" required
+          autofocus>
+      </div>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me
+        </label>
+      </div>
+      <button id="signin" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  
+      <a routerLink="/signup" class="alc">Don't have an account?</a>
+      <a routerLink="/login" id="goback">atras</a>
+    </form>
+  </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Login, ILogin } from "../../models/user/auth";
+import { ILogin, Login } from '../../models/user/auth';
 
 @Component({
   selector: 'app-login-form',
@@ -8,10 +8,12 @@ import { Login, ILogin } from "../../models/user/auth";
 })
 export class LoginFormComponent implements OnInit {
 
-  @Output() submitted = new EventEmitter();
+  @Output() submitted = new EventEmitter<ILogin>();
   @Output() signByGoogle = new EventEmitter<boolean>();
+  @Output() signByFacebook = new EventEmitter<boolean>();
 
   login : ILogin;
+
 
   constructor() {
     this.login = new Login();
@@ -20,12 +22,16 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  submit() {
+  submit() {    
     this.submitted.emit(this.login);
   }
 
-  signGoogle(){
+  signGoogle() {
     this.signByGoogle.emit(true);
+  }
+
+  signFacebook() {
+    this.signByFacebook.emit(true);
   }
 
 }

@@ -7,7 +7,7 @@ import { environment } from "../../../../environments/environment";
 import { BookList } from "../../models/books";
 import { AngularFireAuth } from "angularfire2/auth";
 import { AngularFireDatabase, AngularFireList } from "angularfire2/database";
-import * as firebase from "firebase/app";
+import * as firebase from "firebase";
 
 @Injectable({
   providedIn: 'root'
