@@ -18,4 +18,8 @@ export class MessagesService {
   getMessage():Observable<Message> {
     return this.subject.asObservable();
   }
+
+  disposeMessage(){
+    this.subject.next();
+  }
 }

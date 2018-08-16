@@ -27,6 +27,8 @@ export class AlertMessagesComponent implements OnInit {
           default:
             break;
         }
+        setTimeout(() => {this.messageService.disposeMessage()}, 5000);
+        
       }
     );
   }
