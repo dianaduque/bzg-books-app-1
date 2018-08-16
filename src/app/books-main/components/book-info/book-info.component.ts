@@ -25,8 +25,6 @@ export class BookInfoComponent implements OnInit {
   }
 
   ngOnInit() {    
-    this.pushFavorite.emit(this.book);
-
     this.authFire.authState
     .subscribe(
       user => {          
